@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Extramarital affairs prediction</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      margin: 15px 0;
+      font-weight: 400;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 3px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px #ccc; 
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: auto;
+      padding: 5px;
+      }
+      select {
+      width: auto;
+      padding: 7px 0;
+      background: transparent;
+      }
+      textarea {
+      width: calc(100% - 6px);
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      .item:hover p, .item:hover i {
+      color: #095484;
+      }
+      input:hover, select:hover, textarea:hover, .preferred-metod label:hover input {
+      box-shadow: 0 0 5px 0 #095484;
+      }
+      .preferred-metod label {
+      display: block;
+      margin: 5px 0;
+      }
+      .preferred-metod:hover input {
+      box-shadow: none;
+      }
+      .preferred-metod-item input, .preferred-metod-item span {
+      width: auto;
+      vertical-align: middle;
+      }
+      .preferred-metod-item input {
+      margin: 0 5px 0 0;
+      }
+      
+      .btn-block {
+      margin-top: 20px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;      
+      -webkit-border-radius: 5px; 
+      -moz-border-radius: 5px; 
+      border-radius: 5px; 
+      background-color: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background-color: #0666a3;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      /* justify-content: space-between; */
+      }
+      .name-item input {
+      width: auto;
+      }
+      .city-item select {
+      width: auto;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="testbox">
+      <form action="/predict" method="POST">
+        <h1>Extramarital affairs prediction</h1>
+        <h3>Personal Information</h3>
+        <div class="city-item">
+          <p>Rate Marraige &nbsp;</p>
+          <select name="rm">
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+            <option value="0">0</option>
+          </select>
+        </div>
+        <div class="item">
+          <p>Age (age should be equal to 18 or18+)</p>
+          
+          <input type="number" step="0.01",min="18" name="age"/>
+        </div>
+        <div class="item">
+          <p>Years Married</p>
+          <input type="number" step="0.01" name="ym"/>
+        </div>
+        <div class="item">
+          <p>No of Children</p>
+          <input type="number" name="child"/>
+        </div>
+        <div class="city-item">
+          <p>How Religious you are &nbsp;</p>
+          <select name='rel'>
+            <option value="4">4 more religious</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1 less religious</option>
+          </select>
+        </div>
+        <div class="city-item">
+          <p>level of education &nbsp;</p>
+          <select name='edu'>
+            <option value="9">9 = grade school</option>
+            <option value="12">12 = high school</option>
+            <option value="14">14 = some college</option>
+            <option value="16">16 = college graduate</option>
+            <option value="17">17 = some graduate school</option>
+            <option value="20">20 = advanced degree</option>
+          </select>
+        </div>
+        <div class="city-item" name='wo'>
+          <p>woman's occupation &nbsp;</p>
+          <select name='wo'>
+            <option value="1">1 = student</option>
+            <option value="2">2 = farming/semi-skilled/unskilled</option>
+            <option value="3">3 = white collar</option>
+            <option value="4">4 = teacher/nurse/writer/technician/skilled</option>
+            <option value="5">5 = managerial/business</option>
+            <option value="6">6 = professional with advanced degree</option>
+          </select>
+        </div>
+        <div class="city-item" name='mo'>
+          <p>Male's occupation &nbsp;</p>
+          <select name='mo'>
+            <option value="1">1 = student</option>
+            <option value="2">2 = farming/semi-skilled/unskilled</option>
+            <option value="3">3 = white collar</option>
+            <option value="4">4 = teacher/nurse/writer/technician/skilled</option>
+            <option value="5">5 = managerial/business</option>
+            <option value="6">6 = professional with advanced degree</option>
+          </select>
+        </div>
+        <div class="btn-block">
+          <button type="submit" >submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
